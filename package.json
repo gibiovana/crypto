@@ -17,7 +17,8 @@
     "sha.js": "^2.4.11",
     "toast": "^0.3.30",
     "toast.js": "^0.0.4",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "start": "react-scripts start",

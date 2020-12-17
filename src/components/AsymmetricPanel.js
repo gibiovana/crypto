@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Symmetric from './Symmetric';
-import Asymmetric from './Asymmetric';
+import Keys from './AsymmetricSteps/Keys';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -16,8 +14,8 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`scrollable-auto-tabpanel-${index}`}
-      aria-labelledby={`scrollable-auto-tab-${index}`}
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -37,20 +35,24 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
   return {
-    id: `scrollable-auto-tab-${index}`,
-    'aria-controls': `scrollable-auto-tabpanel-${index}`,
+    id: `vertical-tab-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`,
   };
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    width: '100%',
     backgroundColor: theme.palette.background.paper,
+    display: 'flex',
+    height: 224,
+  },
+  tabs: {
+    borderRight: `1px solid ${theme.palette.divider}`,
   },
 }));
 
-export default function ScrollableTabsButtonAuto() {
+export default function VerticalTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -60,25 +62,33 @@ export default function ScrollableTabsButtonAuto() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="scrollable"
-          scrollButtons="auto"
-          aria-label="scrollable auto tabs example"
-        >
-          <Tab label="Simétrico" {...a11yProps(0)} />
-          <Tab label="Assimétrico" {...a11yProps(1)} />
-        </Tabs>
-      </AppBar>
+      <Tabs
+        orientation="vertical"
+        variant="scrollable"
+        value={value}
+        onChange={handleChange}
+        aria-label="Vertical tabs example"
+        className={classes.tabs}
+      >
+        <Tab label="Chaves" {...a11yProps(0)} />
+        <Tab label="Encriptar" {...a11yProps(1)} />
+        <Tab label="Decriptar" {...a11yProps(2)} />
+        <Tab label="Assinatura" {...a11yProps(3)} />
+        <Tab label="Verificar" {...a11yProps(4)} />
+      </Tabs>
       <TabPanel value={value} index={0}>
-        <Symmetric></Symmetric>
+        <Keys></Keys>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Asymmetric></Asymmetric>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Decriptar
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Assinatura
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        Verificar
       </TabPanel>
     </div>
   );
