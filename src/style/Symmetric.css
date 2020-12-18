@@ -25,12 +25,12 @@
     height: 260px;
 }
 
-.textArea{
+textArea{
     width: 500px;
     height: 200px;
 }
 
-.button{
+button{
     height: 40px;
     width: 80px;
     background-color: #2e2e2e;
