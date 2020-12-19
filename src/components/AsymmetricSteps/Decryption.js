@@ -5,25 +5,14 @@ const nacl = require('tweetnacl')
 const ed2curve = require('ed2curve')
 nacl.util = require('tweetnacl-util')
 
-function substring(encryptedData){
-    let encryptedText = encryptedData.search(`{"cipherText": `);
-    let ephemPubKey = encryptedData.search(`, "ephemPubKey": `);
-    let nonce = encryptedData.search(`, "nonce": `);
-    let version = encryptedData.search(`, "version": `);
-    let toGetCipher = encryptedData.substring(encryptedText, ephemPubKey);
-    let toGetPubKey = encryptedData.substring(ephemPubKey, ephemPubKey);
-}
 
-export function decrypt(encryptedData, secretKey) {
-    substring(encryptedData);
-    const receiverSecretKeyUint8Array = ed2curve.convertSecretKey(Buffer.from(secretKeyAsString, 'hex'))
-    const nonce = Buffer.from(encryptedData.nonce, 'hex')
-    const ciphertext = Buffer.from(encryptedData.ciphertext, 'hex')
-    const ephemPubKey = Buffer.from(encryptedData.ephemPubKey, 'hex')
+export function decrypt(encrypted, ephemPubKey, originalNonce, version, secretKey) {
+    const receiverSecretKeyUint8Array = ed2curve.convertSecretKey(Buffer.from(secretKey, 'hex'))
     const decrypted = nacl.box.open(
-      ciphertext,
-      nonce,
+      encrypted,
       ephemPubKey,
+      originalNonce,
+      version,
       receiverSecretKeyUint8Array
     )
     const finalDecryption = decrypted ? nacl.util.encodeUTF8(decrypted) : decrypted
@@ -33,14 +22,26 @@ export function decrypt(encryptedData, secretKey) {
 function Encryption() {
   return (
     <div>
-        <div className="before">
-            <textarea placeholder="Texto cifrado" className="textArea2" id="message"/><br/>
-            <input className="fields" className="input3" placeholder="Chave privada" id="password"/><br/> 
-            <button type="button" className="button2" onClick={() => decrypt(document.getElementById("message").value, document.getElementById("password").value)}>Decriptar</button>
-        </div>
-        <div className="after">
-          <textarea placeholder="Texto plano" name="decrypted" className="cypherText2"/><br/>
-        </div>
+      <div className="before">
+        Texto:
+        <input placeholder="Texto encriptado" id="encrypted" className="output"/><br/>
+        Key:
+        <input placeholder="Ephem Public Key" id="ephemPubKey" className="output"/><br/>
+        Nonce:
+        <input placeholder="Nonce" id="nonce" className="output"/><br/>
+        Version:
+        <input placeholder="Version" id="version" className="output"/><br/>
+      </div>
+      <div className="after">
+          <textarea placeholder="Texto plano" className="textArea2" id="message"/><br/>
+          <input className="fields" className="publicKey" placeholder="Chave privada" id="password"/><br/> 
+          <button type="button" className="button2" onClick={() => decrypt(
+            document.getElementById("encrypted").value, 
+            document.getElementById("ephemPubKey").value,
+            document.getElementById("nonce").value,
+            document.getElementById("version").value,
+            document.getElementById("password").value)}>Decriptar</button>
+      </div>
     </div>
   );
 }
