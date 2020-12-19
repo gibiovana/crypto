@@ -1,3 +1,4 @@
+import React from 'react';
 import '../../style/Keys.css';
 
 const nacl = require('tweetnacl');
