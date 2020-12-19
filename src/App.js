@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">Crypto</header>
       <div>
-        <TabPanel></TabPanel>
+        <TabPanel />
       </div>
     </div>
   );
