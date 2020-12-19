@@ -1,42 +1,48 @@
-.before{ 
-    float:left;
-    padding: 20px;
-    margin-left: 100px;
+.before {
+  float: left;
+  padding: 20px;
+  margin-left: 100px;
 }
 
-.after{
-    float: right;
-    padding: 20px;
-    margin-right: 100px;
+.after {
+  float: right;
+  padding: 20px;
+  margin-right: 100px;
 }
 
-.fields{
-    margin-bottom: 20px;
-    width: 500px;
-    height: 35px;
+.fields {
+  margin-bottom: 20px;
+  width: 500px;
+  height: 35px;
 }
 
-.text{
-    font-size: 20px;
+.text {
+  font-size: 20px;
 }
 
-.cypherText{
-    width: 500px;
-    height: 260px;
+.cypherText {
+  width: 500px;
+  height: 260px;
 }
 
-textArea{
-    width: 500px;
-    height: 200px;
+textArea {
+  width: 500px;
+  height: 200px;
 }
 
-button{
-    height: 40px;
-    width: 80px;
-    background-color: #2e2e2e;
-    color: white;
-    border:none;
-    margin-top: 15px;
+button {
+  height: 40px;
+  width: 80px;
+  background-color: #2e2e2e;
+  color: white;
+  border: none;
+  margin-top: 15px;
 }
 
-  
+.upper-grid {
+  margin-bottom: 30px !important;
+}
+
+.MuiGrid-container {
+  justify-content: center;
+}
