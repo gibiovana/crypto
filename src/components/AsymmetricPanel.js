@@ -4,6 +4,8 @@ import { makeStyles, Tabs, Tab, Typography, Box } from '@material-ui/core';
 import Keys from './AsymmetricSteps/Keys';
 import Encryption from './AsymmetricSteps/Encryption';
 import Decryption from './AsymmetricSteps/Decryption';
+import Sign from './AsymmetricSteps/Sign';
+import Verify from './AsymmetricSteps/Verify';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -84,10 +86,11 @@ export default function VerticalTabs() {
         <Decryption></Decryption>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Assinatura
+        <Sign></Sign>
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Verificar
+        <Verify>
+        </Verify>
       </TabPanel>
     </div>
   );

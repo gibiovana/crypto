@@ -34,9 +34,8 @@
     margin: 10px;
 }
 
-.input3{
-    width: 400px;
-    height: 40px;
+.cipherText{
+    margin-left:20px;
 }
 
 .publicKey {
@@ -45,3 +44,9 @@
     margin: 20px;
 }
 
+.secretKey {
+    width:500px;
+    height: 30px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
