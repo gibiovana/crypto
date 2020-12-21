@@ -5,13 +5,10 @@ import TabPanel from './components/TabPanel';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        Crypto
-      </header>
+      <header className="App-header">Crypto</header>
       <div>
-        <TabPanel></TabPanel>
+        <TabPanel />
       </div>
-    
     </div>
   );
 }

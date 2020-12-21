@@ -11,7 +11,9 @@
     "aes-js": "^3.1.2",
     "blakejs": "^1.1.0",
     "bs58check": "^2.1.2",
+    "eccrypto": "^1.1.5",
     "ed2curve": "^0.3.0",
+    "nacl-signature": "^2.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-native": "^0.63.4",
@@ -27,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write \"src/**/*.js\""
   },
   "eslintConfig": {
     "extends": [
